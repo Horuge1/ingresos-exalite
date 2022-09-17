@@ -1,0 +1,66 @@
+{% extends 'layout/index.html' %}
+{% block head %}
+    {% include 'layout/datatables.html' %}
+{% endblock %}
+{% block content %}
+    <div class="card card-default">
+        <div class="card-body">
+            <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="list" class="table table-bordered table-striped dataTable dtr-inline"
+                               aria-describedby="example1_info">
+                            <thead>
+                            {% block columns %}
+                            {% endblock %}
+                            </thead>
+                            <tbody>{% block rows %}
+                            {% endblock %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        $(document).ready(function () {
+            $('#list').DataTable()
+        });
+    </script>
+{% endblock %}
+
+
+{#        <div class="row">#}
+{#            <div class="col-sm-12 col-md-6">#}
+{#                <div class="dt-buttons btn-group flex-wrap">#}
+{#                    <button class="btn btn-secondary buttons-copy buttons-html5" tabindex="0" aria-controls="example1"#}
+{#                            type="button"><span>Copy</span></button>#}
+{#                    <button class="btn btn-secondary buttons-csv buttons-html5" tabindex="0" aria-controls="example1"#}
+{#                            type="button"><span>CSV</span></button>#}
+{#                    <button class="btn btn-secondary buttons-excel buttons-html5" tabindex="0" aria-controls="example1"#}
+{#                            type="button"><span>Excel</span></button>#}
+{#                    <button class="btn btn-secondary buttons-pdf buttons-html5" tabindex="0" aria-controls="example1"#}
+{#                            type="button"><span>PDF</span></button>#}
+{#                    <button class="btn btn-secondary buttons-print" tabindex="0" aria-controls="example1" type="button">#}
+{#                        <span>Print</span></button>#}
+{#                    <div class="btn-group">#}
+{#                        <button class="btn btn-secondary buttons-collection dropdown-toggle buttons-colvis" tabindex="0"#}
+{#                                aria-controls="example1" type="button" aria-haspopup="true">#}
+{#                            <span>Column visibility</span><span class="dt-down-arrow"></span></button>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="col-sm-12 col-md-6">#}
+{#                <div id="example1_filter" class="dataTables_filter"><label>Search:<input type="search"#}
+{#                                                                                         class="form-control form-control-sm"#}
+{#                                                                                         placeholder=""#}
+{#                                                                                         aria-controls="example1"></label>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}

@@ -1,0 +1,9 @@
+{% extends 'layout/index.html' %}
+{% block content %}
+    <form method="post" action=".">
+        {% csrf_token %}
+        <b>Esta seguro q desea borrar este registro?</b>
+        <button type="submit">Si, Borrar</button>
+        <a href="{% url 'bet-index' %}">Cancelar</a>
+    </form>
+{% endblock %}
