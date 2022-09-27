@@ -1,41 +1,63 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <title>Ingresos</title>
+
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Log in</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Datta Able Bootstrap admin template made using Bootstrap 4 and it has huge amount of ready made feature, UI components, pages which completely fulfills any dashboard needs." />
+    <meta name="keywords" content="admin templates, bootstrap admin templates, bootstrap 4, dashboard, dashboard templets, sass admin templets, html admin templates, responsive, bootstrap admin templates free download,premium bootstrap admin templates, datta able, datta able bootstrap admin template, free admin theme, free dashboard template"/>
+    <meta name="author" content="CodedThemes"/>
 
-    <!-- Google Font: Source Sans Pro -->
-    {#  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">#}
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{% static 'assets/AdminLTE/plugins/fontawesome-free/css/all.min.css' %}">
-    <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="{% static 'assets/AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{% static 'assets/AdminLTE/css/adminlte.min.css' %}">
+    <!-- Favicon icon -->
+    <link rel="icon" href="{% static 'assets/dattaAble/images/favicon.ico'%}" type="image/x-icon">
+    <!-- fontawesome icon -->
+    <link rel="stylesheet" href="{% static 'assets/dattaAble/fonts/fontawesome/css/fontawesome-all.min.css'%}">
+    <!-- animation css -->
+    <link rel="stylesheet" href="{% static 'assets/dattaAble/plugins/animation/css/animate.min.css'%}">
+    <!-- vendor css -->
+    <link rel="stylesheet" href="{% static 'assets/dattaAble/css/s.css'%}">
+
 </head>
-<body class="hold-transition login-page">
-<div class="login-box">
-    <div class="login-logo">
-        {#    <a href="../../index2.html"><b>Admin</b>LTE</a>#}
-    </div>
-    <!-- /.login-logo -->
-    <div class="card">
-        <div class="card-body login-card-body">
-            <p class="login-box-msg">Usted ha cerrado con éxito su sesión.</p>
-            <a href="{% url 'login' %}">Volver a iniciar sesion</a>
-        </div>
-        <!-- /.login-card-body -->
-    </div>
-</div>
-<!-- /.login-box -->
 
-<!-- jQuery -->
-<script src="{% static 'assets/AdminLTE/plugins/jquery/jquery.min.js' %}"></script>
-<!-- Bootstrap 4 -->
-<script src="{% static 'assets/AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-<!-- AdminLTE App -->
-<script src="{% static 'assets/AdminLTE/js/adminlte.min.js' %}"></script>
+<body>
+    <div class="auth-wrapper">
+        <div class="auth-content">
+            <div class="auth-bg">
+                <span class="r"></span>
+                <span class="r s"></span>
+                <span class="r s"></span>
+                <span class="r"></span>
+            </div>
+            <div class="card">
+                <div class="card-body text-center">
+                    <div class="mb-4">
+                        <i class="feather icon-unlock auth-icon"></i>
+                    </div>
+                    <h3 class="mb-4">Cerrar sesion</h3>
+                    <div class="input-group mb-3">
+                        <p>Usted ha cerrado con éxito su sesión.</p>
+                    </div>
+{#                    <div class="form-group text-left">#}
+{#                        <div class="checkbox checkbox-fill d-inline">#}
+{#                            <input type="checkbox" name="checkbox-fill-1" id="checkbox-fill-a1" checked="">#}
+{#                            <label for="checkbox-fill-a1" class="cr"> Save Details</label>#}
+{#                        </div>#}
+{#                    </div>#}
+                    <a href="{% url 'login' %}" class="btn btn-primary shadow-2 mb-4">Volver a iniciar sesion</a>
+{#                    <p class="mb-2 text-muted">Forgot password? <a href="auth-reset-password.html">Reset</a></p>#}
+{#                    <p class="mb-0 text-muted">Don’t have an account? <a href="auth-signup.html">Signup</a></p>#}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Required Js -->
+<script src="{% static 'assets/dattaAble/js/vendor-all.min.js'%}"></script>
+	<script src="{% static 'assets/dattaAble/plugins/bootstrap/js/bootstrap.min.js'%}"></script>
+
 </body>
 </html>

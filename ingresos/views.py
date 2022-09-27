@@ -7,16 +7,34 @@ from django.views.generic import *
 from .models import *
 from .forms import *
 from django.contrib.auth.models import User
+import numpy as np
+from django.db.models.functions import Cast
+from django.db.models import CharField
 
 
-@login_required
-def bet_calculator(request):
-    return render(request, 'bets/index.html')
+class Home(TemplateView):
+    template_name = 'bets/index.html'
 
 
-class UserList(ListView):
-    model = User
-    template_name = 'users/index.html'
+class BetCalculator(FormView):
+    template_name = 'tools/bet.html'
+    form_class = BetCalculatorForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if 'odd' in self.request.GET and 'gain' in self.request.GET:
+            num1 = self.request.GET['odd']
+            num2 = self.request.GET['gain']
+            a = np.array([[float(num1), -1],
+                         [-1, 1]])
+            b = np.array([[0],
+                         [float(num2)]])
+            ainv = np.linalg.inv(a)
+            x = np.multiply(ainv, b)
+
+            context['num1'] = round(x[1][0], 2)
+            context['num2'] = round(x[1][1], 2)
+        return context
 
 
 class BetList(LoginRequiredMixin, ListView):
@@ -30,6 +48,9 @@ class BetList(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         user = self.request.user
         context['user'] = user
+        context['evolution'] = list(Bet.objects.annotate(y=Cast('created_at', output_field=CharField())).values('y').annotate(
+            a=Sum('amount')).values('y','a')
+        )
         return context
 
 

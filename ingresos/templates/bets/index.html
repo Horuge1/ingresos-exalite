@@ -1,106 +1,193 @@
-{% extends 'layout/index.html' %}
+{% extends 'layouts/index.html' %}
+{% load static %}
 {% block head %}
-    {% include 'layout/datatables.html' %}
+    {% include 'layouts/includes/datatables.html' %}
+    <link rel="stylesheet" href="{% static 'assets/dattaAble/plugins/chart-morris/css/morris.css' %}">
+    <script src="{% static 'assets/dattaAble/plugins/chart-morris/js/raphael.min.js' %}"></script>
+    <script src="{% static 'assets/dattaAble/plugins/chart-morris/js/morris.min.js' %}"></script>
 {% endblock %}
 {% block content %}
     <div class="row">
-        <div class="col-sm-12">
-            <div class="card">
-                <div class="card-body">
-                    <h3>Balance</h3>
-                    <table class="table table-bordered table-striped dataTable dtr-inline"
-                           aria-describedby="example1_info">
-                        <thead>
-                        <tr>
-                            <th>Bank inicial</th>
-                            <th>Fondos</th>
-                            <th>Apostado</th>
-                            <th>Ganancias</th>
-                            <th>Profit</th>
-                            <th>Yield</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>{{ user.balance.initial_bank }}</td>
-                            <td>{{ user.balance.bank }}</td>
-                            <td>{{ user.balance.total_amount }}</td>
-                            <td>{{ user.balance.total_gain }}</td>
-                            <td>{{ user.balance.profit }}</td>
-                            <td>{{ user.balance.yield_numb }}</td>
-                        </tr>
-                        </tbody>
-                    </table>
+        <div class="col-md-6 col-xl-4">
+            <div class="card daily-sales">
+                <div class="card-block">
+                    <h6 class="mb-4">Bank Inicial</h6>
+                    <div class="row d-flex align-items-center">
+                        <div class="col-9">
+                            <h3 class="f-w-300 d-flex align-items-center m-b-0"><i
+                                    class="feather icon-flag text-c-green f-30 m-r-10"></i>${{ user.balance.initial_bank }}
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="progress m-t-30" style="height: 7px;">
+                        <div class="progress-bar progress-c-theme" role="progressbar" style="width: 100%;"
+                             aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-md-6 col-xl-4">
             <div class="card">
-                <div class="card-body">
-                    <h3>Estadisticas</h3>
-                    <table class="table table-bordered table-striped dataTable dtr-inline"
-                           aria-describedby="example1_info">
-                        <thead>
-                        <tr>
-                            <th>Aciertos</th>
-                            <th>Fallos</th>
-                            <th>Nulos</th>
-                            <th>% Aciertos</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>{{ user.balance.total_wins }}</td>
-                            <td>{{ user.balance.total_loses }}</td>
-                            <td>{{ user.balance.total_null }}</td>
-                            <td>{{ user.balance.win_rate }}</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                <div class="card-block">
+                    <h6 class="mb-4">Fondos</h6>
+                    <div class="row d-flex align-items-center">
+                        <div class="col-9">
+                            <h3 class="f-w-300 d-flex align-items-center m-b-0"><i
+                                    class="feather icon-briefcase text-c-green f-30 m-r-10"></i>${{ user.balance.bank }}
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="progress m-t-30" style="height: 7px;">
+                        <div class="progress-bar progress-c-theme2" role="progressbar" style="width: 100%;"
+                             aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-3">
-            <div class="card">
-                <div class="card-body">
-                    <h3>Media</h3>
-                    <table class="table table-bordered table-striped dataTable dtr-inline"
-                           aria-describedby="example1_info">
-                        <thead>
-                        <tr>
-                            <th>Cuota</th>
-                            <th>Apostado</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>{{ user.balance.quote_avg }}</td>
-                            <td>{{ user.balance.amount_avg }}</td>
-                        </tr>
-                        </tbody>
-                    </table>
+        <div class="col-md-6 col-xl-4">
+            <div class="card daily-sales">
+                <div class="card-block">
+                    <h6 class="mb-4">Total apostado</h6>
+                    <div class="row d-flex align-items-center">
+                        <div class="col-9">
+                            <h3 class="f-w-300 d-flex align-items-center m-b-0"><i
+                                    class="feather icon-arrow-down text-c-red f-30 m-r-10"></i>${{ user.balance.total_amount }}
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="progress m-t-30" style="height: 7px;">
+                        <div class="progress-bar progress-c-theme" role="progressbar" style="width: 100%;"
+                             aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-3">
+        <div class="col-md-6 col-xl-4">
+            <div class="card daily-sales">
+                <div class="card-block">
+                    <h6 class="mb-4">Ganancias</h6>
+                    <div class="row d-flex align-items-center">
+                        <div class="col-9">
+                            <h3 class="f-w-300 d-flex align-items-center m-b-0"><i
+                                    class="feather icon-arrow-up text-c-green f-30 m-r-10"></i>${{ user.balance.total_gain }}
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="progress m-t-30" style="height: 7px;">
+                        <div class="progress-bar progress-c-theme2" role="progressbar" style="width: 100%;"
+                             aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-4">
+            <div class="card daily-sales">
+                <div class="card-block">
+                    <h6 class="mb-4">Profit</h6>
+                    <div class="row d-flex align-items-center">
+                        <div class="col-9">
+                            <h3 class="f-w-300 d-flex align-items-center m-b-0"><i
+                                    class="feather icon-trending-up text-c-blue f-30 m-r-10"></i>{{ user.balance.profit }}%
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="progress m-t-30" style="height: 7px;">
+                        <div class="progress-bar progress-c-theme" role="progressbar" style="width: 100%;"
+                             aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-4">
+            <div class="card daily-sales">
+                <div class="card-block">
+                    <h6 class="mb-4">Yield</h6>
+                    <div class="row d-flex align-items-center">
+                        <div class="col-9">
+                            <h3 class="f-w-300 d-flex align-items-center m-b-0"><i
+                                    class="feather icon-hash text-c-blue f-30 m-r-10"></i>{{ user.balance.yield_numb }}%
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="progress m-t-30" style="height: 7px;">
+                        <div class="progress-bar progress-c-theme2" role="progressbar" style="width: 100%;"
+                             aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-4">
             <div class="card">
-                <div class="card-body">
-                    <h3>Maxima</h3>
-                    <table class="table table-bordered table-striped dataTable dtr-inline"
-                           aria-describedby="example1_info">
-                        <thead>
-                        <tr>
-                            <th>Apuesta</th>
-                            <th>Ganancia</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>{{ user.balance.max_amount }}</td>
-                            <td>{{ user.balance.max_gain }}</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                <div class="card-header">
+                    <h5>Estadisticas</h5>
+                </div>
+                <div class="card-block">
+                    <div id="statistics"></div>
+                </div>
+                <div class="card-block">
+                    <h6 class="text-center  m-b-10"><span
+                            class="text-muted m-r-5">%Aciertos</span>{{ user.balance.win_rate }}</h6>
+                    <div class="progress">
+                        <div class="progress-bar progress-c-theme" role="progressbar"
+                             style="width:100%;height:6px;" aria-valuenow="50" aria-valuemin="0"
+                             aria-valuemax="100">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Evolución</h5>
+                </div>
+                <div class="card-block">
+                    <div id="evolution">
+                    </div>
+                </div>
+                <div class="card-block">
+                    <div class="row align-items-center justify-content-center card-active">
+                        <div class="col-md-3 col-sm-12">
+                            <h6 class="text-center  m-b-10"><span
+                                    class="text-muted m-r-5">Cuota Media:</span>{{ user.balance.odd_avg }}</h6>
+                            <div class="progress">
+                                <div class="progress-bar progress-c-theme" role="progressbar"
+                                     style="width:100%;height:6px;" aria-valuenow="50" aria-valuemin="0"
+                                     aria-valuemax="100">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <h6 class="text-center  m-b-10"><span
+                                    class="text-muted m-r-5">Apuesta Media:</span>${{ user.balance.amount_avg }}</h6>
+                            <div class="progress">
+                                <div class="progress-bar progress-c-theme2" role="progressbar"
+                                     style="width:100%;height:6px;" aria-valuenow="50" aria-valuemin="0"
+                                     aria-valuemax="100">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <h6 class="text-center  m-b-10"><span
+                                    class="text-muted m-r-5">Apuesta Máxima:</span>${{ user.balance.max_amount }}</h6>
+                            <div class="progress">
+                                <div class="progress-bar progress-c-theme" role="progressbar"
+                                     style="width:100%;height:6px;" aria-valuenow="50" aria-valuemin="0"
+                                     aria-valuemax="100">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <h6 class="text-center  m-b-10"><span
+                                    class="text-muted m-r-5">Ganancia Máxima:</span>${{ user.balance.max_gain }}</h6>
+                            <div class="progress">
+                                <div class="progress-bar progress-c-theme2" role="progressbar"
+                                     style="width:100%;height:6px;" aria-valuenow="50" aria-valuemin="0"
+                                     aria-valuemax="100">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -110,10 +197,10 @@
             <a class="btn btn-success" href="{% url 'bet-create' %}">Crear Apuesta</a>
         </div>
         <div class="card-body">
-            <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">
+            <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4" style="width:100%">
                 <div class="row">
                     <div class="col-sm-12">
-                        <table id="list" class="table table-bordered table-striped dataTable dtr-inline"
+                        <table id="list" class="table table-bordered table-striped dataTable dtr-inline w-100"
                                aria-describedby="example1_info">
                             <thead>
                             <tr>
@@ -136,10 +223,10 @@
                                     <td>{{ bet.pick }}</td>
                                     <td>{{ bet.type }}</td>
                                     <td>{{ bet.amount }}</td>
-                                    <td>{{ bet.quote }}</td>
+                                    <td>{{ bet.odd }}</td>
                                     <td>{{ bet.result }}</td>
                                     <td>{{ bet.gain }}</td>
-                                    <td></td>
+                                    <td>{{ bet.bank }}</td>
                                     <td>{{ bet.result_desc }}</td>
                                     <td>
                                         <a class="btn btn-warning" href="{% url 'bet-update' bet.id %}">
@@ -164,7 +251,55 @@
 {% block scripts %}
     <script>
         $(document).ready(function () {
-            $('#list').DataTable()
+            $('#list').DataTable({
+                responsive: true,
+                language: {
+                    url: '{% static 'assets/localization/package.json' %}'
+                }
+            })
         });
+        let datas = [
+            {label: "Aciertos", value: {{user.balance.total_wins}}},
+            {label: "Fallos", value: {{user.balance.total_loses}}},
+            {label: "Nulos", value: {{user.balance.total_null}}}
+        ]
+
+        let list = {{ evolution|safe }}
+            console.log(typeof datas)
+        console.log(typeof list)
+        {#for(let i=0;i<list.length; i++){#}
+        {#    console.log(list[i])#}
+        {#    //datas.push(list[i])#}
+
+
+            Morris.Donut({
+                element: 'statistics',
+                data: [
+                    {label: "Aciertos", value: {{user.balance.total_wins}}},
+                    {label: "Fallos", value: {{user.balance.total_loses}}},
+                    {label: "Nulos", value: {{user.balance.total_null}}}
+                ],
+                colors: [
+                    'rgba(14,248,80,0.72)',
+                    'rgba(232,29,29)',
+                    'rgba(98,98,98,0.8)'
+                ],
+                resize: true
+            });
+            Morris.Line({
+                element: 'evolution',
+                data: list,
+                xkey: 'y',
+                redraw: true,
+                resize: true,
+                ykeys: ['a', 'b'],
+                hideHover: 'auto',
+                responsive: true,
+                labels: ['Series A', 'Series B'],
+                lineColors: ['#1de9b6', '#A389D4'],
+                xLabels: "week"
+            });
+
+
     </script>
 {% endblock %}

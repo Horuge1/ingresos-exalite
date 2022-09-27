@@ -1,8 +1,24 @@
-{% extends 'layout/index.html' %}
+{% extends 'layouts/index.html' %}
 {% block content %}
-    <form method="post" action=".">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit">Save</button>
-    </form>
+    <div class="card m-auto col-md-6 col-sm-12">
+        <div class="card-header">
+            <h5>Resultado</h5>
+        </div>
+        <div class="card-body">
+            <form method="post" action=".">
+                {% csrf_token %}
+                <div class="row">
+                <div class="form-group col-md-6 col-sm-12">
+                    <label>W/L/N</label>
+                    {{ form.result }}
+                </div>
+                <div class="form-group col-md-6 col-sm-12">
+                    <label>Resultado</label>
+                    {{ form.result_desc }}
+                </div>
+                </div>
+                <button class="btn btn-success" type="submit">Guardar</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}
