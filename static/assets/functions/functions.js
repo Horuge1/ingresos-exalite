@@ -19,16 +19,16 @@ function toAmerican(odd, type) {
         case 1:
             let decimal = toDecimal(odd, 1)
             if (decimal < 2) {
-                return '-' + 100 / (decimal - 1);
+                return '-' + (100 / (decimal - 1)).toFixed(2);
             } else {
-                return '+' + (decimal - 1) * 100;
+                return '+' + ((decimal - 1) * 100).toFixed(2);
             }
             break
         case 2:
             if (odd < 2) {
-                return '-' + 100 / (odd - 1);
+                return '-' + (100 / (odd - 1)).toFixed(2);
             } else {
-                return '+' + (odd - 1) * 100;
+                return '+' + ((odd - 1) * 100).toFixed(2);
             }
             break
     }
@@ -70,8 +70,9 @@ function calculate(rate) {
     const f = calc['fractional'].value;
     //console.log(math.fraction(0.2)['n']+'/'+math.fraction(0.2)['d']);
     if (rate == 0 && d != '') {
-        calc['american'].value = toAmerican(parseInt(d), 2)
-        calc['fractional'].value = toFractional(parseInt(d), 2)
+        //console.log('as');
+        calc['american'].value = toAmerican(parseFloat(d), 2)
+        calc['fractional'].value = toFractional(parseFloat(d), 2)
     } else if (rate == 1 && a != '') {
         calc['decimal'].value = toDecimal(a, 0)
         calc['fractional'].value = toFractional(a, 0)
